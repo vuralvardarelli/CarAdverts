@@ -4,6 +4,7 @@ using Repository.Application.Interfaces;
 using Repository.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -42,14 +43,28 @@ namespace Repository.Infrastructure.Repositories
             }
         }
 
-        public async Task<IReadOnlyList<Adverts>> GetAllAsync()
+        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize)
         {
-            var sql = "SELECT * FROM Adverts";
+            IEnumerable<Adverts> response = null;
+
+            DynamicParameters parameters = new DynamicParameters();
+
+            parameters.Add("@PageNumber", page);
+            parameters.Add("@PageSize", pageSize);
+
             using (var connection = new SqlConnection(configuration.GetConnectionString("AdvertConnection")))
             {
-                connection.Open();
-                var result = await connection.QueryAsync<Adverts>(sql);
-                return result.ToList();
+                var sql = @"
+                SELECT a.*
+                FROM Adverts a
+                OFFSET @Offset ROWS
+                FETCH NEXT @PageSize ROWS ONLY;
+                ";
+                await connection.OpenAsync();
+
+                response = await connection.QueryAsync<Adverts>(sql: @"SELECT a.* FROM Adverts a ORDER BY ID OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY", param: parameters, commandType: CommandType.Text);
+
+                return response.ToList();
             }
         }
 

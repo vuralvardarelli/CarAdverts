@@ -21,9 +21,9 @@ namespace Repository.API.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page, int pageSize)
         {
-            return Ok(await _repositoryService.GetAllAsync());
+            return Ok(await _repositoryService.GetAllAsync(page, pageSize));
         }
 
         [HttpGet("get")]

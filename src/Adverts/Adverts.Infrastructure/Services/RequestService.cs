@@ -25,13 +25,13 @@ namespace Adverts.Infrastructure.Services
             _client = _clientFactory.CreateClient("repositoryService");
         }
 
-        public async Task<GenericResult> GetAll()
+        public async Task<GenericResult> GetAll(int page, int pageSize)
         {
             GenericResult result = new GenericResult();
 
             try
             {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "advert/all");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"advert/all?page={page}&pageSize={pageSize}");
 
                 HttpResponseMessage response = await _client.SendAsync(request);
 
