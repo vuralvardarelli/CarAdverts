@@ -19,13 +19,11 @@ namespace Adverts.API.Controllers
     [Route("/advert")]
     [ApiController]
     public class AdvertController : ControllerBase
-    {
-        private readonly EventBusRabbitMQProducer _eventBus;
+    {       
         private readonly IRequestService _requestService;
 
-        public AdvertController(EventBusRabbitMQProducer eventBus, IRequestService requestService)
+        public AdvertController(IRequestService requestService)
         {
-            _eventBus = eventBus;
             _requestService = requestService;
         }
 
@@ -80,15 +78,9 @@ namespace Adverts.API.Controllers
         {
             try
             {
-                AdvertVisitEvent eventMessage = new AdvertVisitEvent()
-                {
-                    advertId = Convert.ToInt32(request.advertId),
-                    iPAdress = RequestInformation.GetIp(HttpContext),
-                    RequestId = Guid.NewGuid(),
-                    visitDate = DateTime.Now
-                };
+                string ip = RequestInformation.GetIp(HttpContext);
 
-                _eventBus.PublishAdvertVisit(EventBusConstants.AdvertVisitQueue, eventMessage);
+                _requestService.CreateVisit(request.advertId, ip);
 
                 return StatusCode(201, "visit created");
             }

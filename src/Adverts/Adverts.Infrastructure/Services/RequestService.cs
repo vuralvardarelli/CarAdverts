@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using EventBusRabbitMQ.Producer;
+using EventBusRabbitMQ.Events;
+using EventBusRabbitMQ.Common;
 
 namespace Adverts.Infrastructure.Services
 {
@@ -13,9 +16,11 @@ namespace Adverts.Infrastructure.Services
     {
         private readonly IHttpClientFactory _clientFactory;
         private HttpClient _client;
+        private readonly EventBusRabbitMQProducer _eventBus;
 
-        public RequestService(IHttpClientFactory clientFactory)
+        public RequestService(IHttpClientFactory clientFactory, EventBusRabbitMQProducer eventBus)
         {
+            _eventBus = eventBus;
             _clientFactory = clientFactory;
             _client = _clientFactory.CreateClient("repositoryService");
         }
@@ -102,9 +107,17 @@ namespace Adverts.Infrastructure.Services
             return result;
         }
 
-        public Task Post()
+        public async void CreateVisit(string advertId, string ip)
         {
-            throw new NotImplementedException();
+            AdvertVisitEvent eventMessage = new AdvertVisitEvent()
+            {
+                advertId = Convert.ToInt32(advertId),
+                iPAdress = ip,
+                RequestId = Guid.NewGuid(),
+                visitDate = DateTime.Now
+            };
+
+            _eventBus.PublishAdvertVisit(EventBusConstants.AdvertVisitQueue, eventMessage);
         }
     }
 }
