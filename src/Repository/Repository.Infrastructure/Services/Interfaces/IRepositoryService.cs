@@ -9,7 +9,7 @@ namespace Repository.Infrastructure.Services.Interfaces
 {
     public interface IRepositoryService
     {
-        Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize);
+        Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending);
 
         Task<Adverts> GetByIdAsync(int id);
     }

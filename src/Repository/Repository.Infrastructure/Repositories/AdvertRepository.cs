@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Repository.Application.Interfaces;
+using Repository.Core;
 using Repository.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Repository.Infrastructure.Repositories
             }
         }
 
-        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize)
+        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending)
         {
             IEnumerable<Adverts> response = null;
 
@@ -52,17 +53,20 @@ namespace Repository.Infrastructure.Repositories
             parameters.Add("@PageNumber", page);
             parameters.Add("@PageSize", pageSize);
 
+            string sortDirection = "";
+            if (isDescending)
+            {
+                sortDirection = "DESC";
+            }
+
+            if (!string.IsNullOrEmpty(sortByColumn) && !Utilities.FilterableAdvertColumnNames.Contains(sortByColumn))
+                throw new ArgumentOutOfRangeException(nameof(sortByColumn), "Unknown column " + sortByColumn);
+
             using (var connection = new SqlConnection(configuration.GetConnectionString("AdvertConnection")))
             {
-                var sql = @"
-                SELECT a.*
-                FROM Adverts a
-                OFFSET @Offset ROWS
-                FETCH NEXT @PageSize ROWS ONLY;
-                ";
                 await connection.OpenAsync();
 
-                response = await connection.QueryAsync<Adverts>(sql: @"SELECT a.* FROM Adverts a ORDER BY ID OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY", param: parameters, commandType: CommandType.Text);
+                response = await connection.QueryAsync<Adverts>(sql: $@"SELECT a.* FROM Adverts a ORDER BY {sortByColumn} {sortDirection} OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY", param: parameters, commandType: CommandType.Text);
 
                 return response.ToList();
             }

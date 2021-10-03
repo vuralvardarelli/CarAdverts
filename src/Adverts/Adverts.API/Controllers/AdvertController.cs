@@ -31,9 +31,9 @@ namespace Adverts.API.Controllers
         [ProducesResponseType(typeof(List<Core.Entities.Adverts>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult> GetAll(int page, int pageSize)
+        public async Task<ActionResult> GetAll(int page, int pageSize, string sortByColumn, bool isDescending)
         {
-            GenericResult result = await _requestService.GetAll(page,pageSize);
+            GenericResult result = await _requestService.GetAll(page, pageSize, sortByColumn, isDescending);
 
             if (result.StatusCode == 200)
             {
