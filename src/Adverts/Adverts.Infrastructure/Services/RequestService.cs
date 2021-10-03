@@ -12,10 +12,12 @@ namespace Adverts.Infrastructure.Services
     public class RequestService : IRequestService
     {
         private readonly IHttpClientFactory _clientFactory;
+        private HttpClient _client;
 
         public RequestService(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
+            _client = _clientFactory.CreateClient("repositoryService");
         }
 
         public async Task<GenericResult> GetAll()
@@ -26,9 +28,7 @@ namespace Adverts.Infrastructure.Services
             {
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "advert/all");
 
-                HttpClient client = _clientFactory.CreateClient("repositoryService");
-
-                HttpResponseMessage response = await client.SendAsync(request);
+                HttpResponseMessage response = await _client.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -69,9 +69,7 @@ namespace Adverts.Infrastructure.Services
             {
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"advert/get?id={id}");
 
-                HttpClient client = _clientFactory.CreateClient("repositoryService");
-
-                HttpResponseMessage response = await client.SendAsync(request);
+                HttpResponseMessage response = await _client.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)
                 {
