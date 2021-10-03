@@ -14,6 +14,7 @@ namespace Repository.Infrastructure
         public static void AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IAdvertRepository, AdvertRepository>();
+            services.AddTransient<IAdvertVisitRepository, AdvertVisitRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }

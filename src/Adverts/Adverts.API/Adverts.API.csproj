@@ -8,4 +8,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\..\Repository\Repository.Application\Repository.Application.csproj" />
+    <ProjectReference Include="..\..\Repository\Repository.Infrastructure\Repository.Infrastructure.csproj" />
+    <ProjectReference Include="..\Adverts.Core\Adverts.Core.csproj" />
+  </ItemGroup>
+
 </Project>

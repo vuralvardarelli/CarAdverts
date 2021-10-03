@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\Repository.Application\Repository.Application.csproj" />
     <ProjectReference Include="..\Repository.Infrastructure\Repository.Infrastructure.csproj" />
   </ItemGroup>
 

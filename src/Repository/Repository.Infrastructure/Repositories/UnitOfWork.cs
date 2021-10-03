@@ -9,11 +9,13 @@ namespace Repository.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(IAdvertRepository advertRepository)
+        public UnitOfWork(IAdvertRepository advertRepository, IAdvertVisitRepository advertVisitRepository)
         {
             Adverts = advertRepository;
+            AdvertVisits = advertVisitRepository;
         }
 
         public IAdvertRepository Adverts { get; }
+        public IAdvertVisitRepository AdvertVisits { get; }
     }
 }

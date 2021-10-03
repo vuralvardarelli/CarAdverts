@@ -22,8 +22,6 @@ namespace Repository.Infrastructure.Repositories
 
         public async Task<int> AddAsync(Adverts entity)
         {
-            entity.date = DateTime.Now;
-
             var sql = "Insert into Adverts (id,memberId,cityId,CityName,townId,TownName,modelId,modelName,year,price,title,date,categoryId,category,km,color,gear,fuel,firstPhoto,secondPhoto,userInfo,userPhone,text) VALUES (@id,@memberId,@cityId,@CityName,@townId,@TownName,@modelId,@modelName,@year,@price,@title,@date,@categoryId,@category,@km,@color,@gear,@fuel,@firstPhoto,@secondPhoto,@userInfo,@userPhone,@text)";
             using (var connection = new SqlConnection(configuration.GetConnectionString("AdvertConnection")))
             {
