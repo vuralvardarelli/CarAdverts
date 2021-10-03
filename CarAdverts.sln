@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Core", "src\Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Infrastructure", "src\Repository\Repository.Infrastructure\Repository.Infrastructure.csproj", "{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Application", "src\Repository\Repository.Application\Repository.Application.csproj", "{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{BD45EFDC-5314-40E2-B034-375BEE89AA1F} = {74E6F612-0218-43EE-9726-8EE77A56388B}
 		{78928AC4-D901-4B91-A49B-772E48D353A0} = {74E6F612-0218-43EE-9726-8EE77A56388B}
 		{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A} = {74E6F612-0218-43EE-9726-8EE77A56388B}
+		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C} = {74E6F612-0218-43EE-9726-8EE77A56388B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E6E871F-01C8-4C7A-B5D2-DE6201D1036B}

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Repository.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,12 @@ namespace Repository.API
         {
 
             services.AddControllers();
+
+            services.AddInfrastructure();
+
+            //services.AddDbContext<OrderContext>(c =>
+            //    c.UseSqlServer(Configuration.GetConnectionString("OrderConnection")), ServiceLifetime.Singleton);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Repository.API", Version = "v1" });
