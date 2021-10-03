@@ -107,17 +107,30 @@ namespace Adverts.Infrastructure.Services
             return result;
         }
 
-        public async void CreateVisit(string advertId, string ip)
+        public async Task<GenericResult> CreateVisit(string advertId, string ip)
         {
-            AdvertVisitEvent eventMessage = new AdvertVisitEvent()
-            {
-                advertId = Convert.ToInt32(advertId),
-                iPAdress = ip,
-                RequestId = Guid.NewGuid(),
-                visitDate = DateTime.Now
-            };
+            GenericResult result = new GenericResult();
 
-            _eventBus.PublishAdvertVisit(EventBusConstants.AdvertVisitQueue, eventMessage);
+            try
+            {
+                AdvertVisitEvent eventMessage = new AdvertVisitEvent()
+                {
+                    advertId = Convert.ToInt32(advertId),
+                    iPAdress = ip,
+                    RequestId = Guid.NewGuid(),
+                    visitDate = DateTime.Now
+                };
+
+                _eventBus.PublishAdvertVisit(EventBusConstants.AdvertVisitQueue, eventMessage);
+
+                result.IsSuccess = true;
+            }
+            catch
+            {
+                result.IsSuccess = false;
+            }
+
+            return await Task.FromResult(result);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Adverts.API.Controllers
     [Route("/advert")]
     [ApiController]
     public class AdvertController : ControllerBase
-    {       
+    {
         private readonly IRequestService _requestService;
 
         public AdvertController(IRequestService requestService)
@@ -76,15 +76,16 @@ namespace Adverts.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult> Visit([FromBody] AdvertVisitRequest request)
         {
-            try
+
+            string ip = RequestInformation.GetIp(HttpContext);
+
+            GenericResult result = await _requestService.CreateVisit(request.advertId, ip);
+
+            if (result.IsSuccess)
             {
-                string ip = RequestInformation.GetIp(HttpContext);
-
-                _requestService.CreateVisit(request.advertId, ip);
-
                 return StatusCode(201, "visit created");
             }
-            catch
+            else
             {
                 return StatusCode(500, "Internal error occured");
             }

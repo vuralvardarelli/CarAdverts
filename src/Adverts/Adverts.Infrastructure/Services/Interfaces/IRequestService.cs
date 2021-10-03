@@ -8,6 +8,6 @@ namespace Adverts.Infrastructure.Services.Interfaces
         Task<GenericResult> GetAll();
 
         Task<GenericResult> GetById(string id);
-        void CreateVisit(string advertId, string ip);
+        Task<GenericResult> CreateVisit(string advertId, string ip);
     }
 }
