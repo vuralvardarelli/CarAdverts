@@ -35,9 +35,7 @@ namespace Adverts.Infrastructure.Services
                 if (response.IsSuccessStatusCode)
                 {
                     List<Core.Entities.Adverts> adverts = JsonConvert.DeserializeObject<List<Core.Entities.Adverts>>(await response.Content.ReadAsStringAsync());
-                    adverts = new List<Core.Entities.Adverts>();
                     result.Data = adverts;
-                    
 
                     if (adverts.Count > 0)
                     {
@@ -48,7 +46,7 @@ namespace Adverts.Infrastructure.Services
                     {
                         result.IsSuccess = true;
                         result.StatusCode = 204;
-                    }                   
+                    }
                 }
                 else
                 {

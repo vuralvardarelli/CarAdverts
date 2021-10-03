@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Application.Interfaces;
+using Repository.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,17 @@ namespace Repository.API.Controllers
     [ApiController]
     public class AdvertController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfwork;
+        private readonly IRepositoryService _repositoryService;
 
-        public AdvertController(IUnitOfWork unitOfwork)
+        public AdvertController(IRepositoryService repositoryService)
         {
-            _unitOfwork = unitOfwork;
+            _repositoryService = repositoryService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _unitOfwork.Adverts.GetAllAsync();
-            return Ok(data);
+            return Ok(await _repositoryService.GetAllAsync());
         }
     }
 }

@@ -11,9 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
-using Repository.Application.Interfaces;
-using Repository.Infrastructure;
-using Repository.Infrastructure.Repositories;
+using Adverts.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +34,13 @@ namespace Adverts.API
 
             services.AddControllers();
 
+            services.AddInfrastructure();
+
             services.AddHttpClient("repositoryService", c =>
             {
                 c.BaseAddress = new Uri(Configuration["RepositoryServiceUrl"]);
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });
-
-            services.AddScoped<IRequestService, RequestService>();
 
             services.AddSingleton<IRabbitMQConnection>(sp =>
             {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Repository.Application.Interfaces;
 using Repository.Infrastructure.Repositories;
+using Repository.Infrastructure.Services;
+using Repository.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace Repository.Infrastructure
             services.AddTransient<IAdvertRepository, AdvertRepository>();
             services.AddTransient<IAdvertVisitRepository, AdvertVisitRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IRepositoryService, RepositoryService>();
         }
     }
 }
