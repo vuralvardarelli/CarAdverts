@@ -1,3 +1,5 @@
+using Adverts.Infrastructure.Services;
+using Adverts.Infrastructure.Services.Interfaces;
 using EventBusRabbitMQ;
 using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +36,13 @@ namespace Adverts.API
 
             services.AddControllers();
 
-            services.AddInfrastructure();
+            services.AddHttpClient("repositoryService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["RepositoryServiceUrl"]);
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
+
+            services.AddScoped<IRequestService, RequestService>();
 
             services.AddSingleton<IRabbitMQConnection>(sp =>
             {

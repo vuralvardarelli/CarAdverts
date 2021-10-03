@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\Repository\Repository.Application\Repository.Application.csproj" />
     <ProjectReference Include="..\..\Repository\Repository.Infrastructure\Repository.Infrastructure.csproj" />
     <ProjectReference Include="..\Adverts.Core\Adverts.Core.csproj" />
+    <ProjectReference Include="..\Adverts.Infrastructure\Adverts.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

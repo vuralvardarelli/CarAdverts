@@ -1,5 +1,7 @@
 ﻿using Adverts.API.Util;
+using Adverts.Core.Models;
 using Adverts.Core.Models.Request;
+using Adverts.Infrastructure.Services.Interfaces;
 using EventBusRabbitMQ.Common;
 using EventBusRabbitMQ.Events;
 using EventBusRabbitMQ.Producer;
@@ -7,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Adverts.API.Controllers
@@ -16,10 +19,31 @@ namespace Adverts.API.Controllers
     public class AdvertController : ControllerBase
     {
         private readonly EventBusRabbitMQProducer _eventBus;
+        private readonly IRequestService _requestService;
 
-        public AdvertController(EventBusRabbitMQProducer eventBus)
+        public AdvertController(EventBusRabbitMQProducer eventBus, IRequestService requestService)
         {
             _eventBus = eventBus;
+            _requestService = requestService;
+        }
+
+        [HttpGet("all")]
+        public async Task<ActionResult> GetAll()
+        {
+            GenericResult result = await _requestService.Get();
+
+            if (result.StatusCode == 200)
+            {
+                return Ok(result.Data);
+            }
+            else if (result.StatusCode == 204)
+            {
+                return StatusCode(204, "No adverts found");
+            }
+            else
+            {
+                return StatusCode(500, "Internal error occurred");
+            }
         }
 
         [HttpPost("visit")]
