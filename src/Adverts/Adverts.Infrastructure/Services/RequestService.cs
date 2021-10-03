@@ -4,9 +4,7 @@ using Adverts.Infrastructure.Services.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Adverts.Infrastructure.Services
@@ -77,7 +75,7 @@ namespace Adverts.Infrastructure.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Core.Entities.AdvertDetails advertDetails = JsonConvert.DeserializeObject<Core.Entities.AdvertDetails>(await response.Content.ReadAsStringAsync());
+                    AdvertDetails advertDetails = JsonConvert.DeserializeObject<AdvertDetails>(await response.Content.ReadAsStringAsync());
                     result.Data = advertDetails;
 
                     if (advertDetails != null)
