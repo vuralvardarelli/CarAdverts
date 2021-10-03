@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository.API.Controllers
 {
-    [Route("/[controller]")]
+    [Route("/advert")]
     [ApiController]
     public class AdvertController : ControllerBase
     {
@@ -20,10 +20,16 @@ namespace Repository.API.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _repositoryService.GetAllAsync());
+        }
+
+        [HttpGet("get")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            return Ok(await _repositoryService.GetByIdAsync(Convert.ToInt32(id)));
         }
     }
 }

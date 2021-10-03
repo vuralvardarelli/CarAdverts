@@ -10,5 +10,7 @@ namespace Repository.Infrastructure.Services.Interfaces
     public interface IRepositoryService
     {
         Task<IReadOnlyList<Adverts>> GetAllAsync();
+
+        Task<Adverts> GetByIdAsync(int id);
     }
 }

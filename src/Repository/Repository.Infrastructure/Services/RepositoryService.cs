@@ -22,5 +22,10 @@ namespace Repository.Infrastructure.Services
         {
             return await _unitOfwork.Adverts.GetAllAsync();
         }
+
+        public async Task<Adverts> GetByIdAsync(int id)
+        {
+            return await _unitOfwork.Adverts.GetByIdAsync(id);
+        }
     }
 }

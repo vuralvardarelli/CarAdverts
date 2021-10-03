@@ -30,7 +30,7 @@ namespace Adverts.API.Controllers
         [HttpGet("all")]
         public async Task<ActionResult> GetAll()
         {
-            GenericResult result = await _requestService.Get();
+            GenericResult result = await _requestService.GetAll();
 
             if (result.StatusCode == 200)
             {
@@ -39,6 +39,25 @@ namespace Adverts.API.Controllers
             else if (result.StatusCode == 204)
             {
                 return StatusCode(204, "No adverts found");
+            }
+            else
+            {
+                return StatusCode(500, "Internal error occurred");
+            }
+        }
+
+        [HttpGet("get")]
+        public async Task<ActionResult> GetById(string id)
+        {
+            GenericResult result = await _requestService.GetById(id);
+
+            if (result.StatusCode == 200)
+            {
+                return Ok(result.Data);
+            }
+            else if (result.StatusCode == 204)
+            {
+                return StatusCode(204, "No advert found");
             }
             else
             {
