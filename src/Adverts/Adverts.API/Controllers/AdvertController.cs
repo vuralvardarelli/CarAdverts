@@ -31,7 +31,7 @@ namespace Adverts.API.Controllers
         [ProducesResponseType(typeof(List<Core.Entities.Adverts>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult> GetAll(int page = 1, int pageSize = 10, string sortByColumn = "", bool isDescending = false, string categoryId = "", string price = "", string gear = "", string fuel = "")
+        public async Task<ActionResult> GetAll(int page = 1, int pageSize = 10, string sortByColumn = "price", bool isDescending = false, string categoryId = "", string price = "", string gear = "", string fuel = "")
         {
             GenericResult result = await _requestService.GetAll(page, pageSize, sortByColumn, isDescending, categoryId, price, gear, fuel);
 
