@@ -21,9 +21,9 @@ namespace Repository.API.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll(int page, int pageSize, string sortByColumn, bool isDescending)
+        public async Task<IActionResult> GetAll(int page = 1, int pageSize = 10, string sortByColumn = "", bool isDescending = false, string categoryId = "", string price = "", string gear = "", string fuel = "")
         {
-            return Ok(await _repositoryService.GetAllAsync(page, pageSize, sortByColumn, isDescending));
+            return Ok(await _repositoryService.GetAllAsync(page, pageSize, sortByColumn, isDescending, categoryId, price, gear, fuel));
         }
 
         [HttpGet("get")]

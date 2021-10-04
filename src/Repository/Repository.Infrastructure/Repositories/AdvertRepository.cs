@@ -44,7 +44,7 @@ namespace Repository.Infrastructure.Repositories
             }
         }
 
-        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending)
+        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending, string categoryId, string price, string gear, string fuel)
         {
             IEnumerable<Adverts> response = null;
 
@@ -66,7 +66,41 @@ namespace Repository.Infrastructure.Repositories
             {
                 await connection.OpenAsync();
 
-                response = await connection.QueryAsync<Adverts>(sql: $@"SELECT a.* FROM Adverts a ORDER BY {sortByColumn} {sortDirection} OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY", param: parameters, commandType: CommandType.Text);
+                var builder = new SqlBuilder();
+
+                //note the 'where' in-line comment is required, it is a replacement token
+                var selector = builder.AddTemplate("select a.* from Adverts a /**where**/");
+
+                var AdvertModel = new Adverts();
+
+                if (!string.IsNullOrEmpty(categoryId))
+                {
+                    int cId = Convert.ToInt32(categoryId);
+                    builder.Where("categoryId = @cId", new { AdvertModel.categoryId });
+                    parameters.Add("@cId", cId);
+                }
+
+                if (!string.IsNullOrEmpty(price))
+                {
+                    int prc = Convert.ToInt32(price);
+                    builder.Where("price = @prc", new { AdvertModel.price });
+                    parameters.Add("@prc", prc);
+                }
+
+                if (!string.IsNullOrEmpty(gear))
+                {
+                    builder.Where("gear = @gear", new { AdvertModel.gear });
+                    parameters.Add("@gear", gear);
+                }
+
+
+                if (!string.IsNullOrEmpty(fuel))
+                {
+                    builder.Where("fuel = @fuel", new { AdvertModel.fuel });
+                    parameters.Add("@fuel", fuel);
+                }
+
+                response = await connection.QueryAsync<Adverts>(sql: $@"{selector.RawSql} ORDER BY {sortByColumn} {sortDirection} OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY", param: parameters, commandType: CommandType.Text);
 
                 return response.ToList();
             }

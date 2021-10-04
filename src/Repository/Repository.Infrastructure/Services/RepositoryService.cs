@@ -18,9 +18,9 @@ namespace Repository.Infrastructure.Services
             _unitOfwork = unitOfwork;
         }
 
-        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending)
+        public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending, string categoryId, string price, string gear, string fuel)
         {
-            return await _unitOfwork.Adverts.GetAllAsync(page, pageSize, sortByColumn, isDescending);
+            return await _unitOfwork.Adverts.GetAllAsync(page, pageSize, sortByColumn, isDescending, categoryId, price, gear, fuel);
         }
 
         public async Task<Adverts> GetByIdAsync(int id)

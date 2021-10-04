@@ -36,7 +36,7 @@ namespace Repository.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IReadOnlyList<AdvertVisits>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending)
+        public Task<IReadOnlyList<AdvertVisits>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending, string categoryId, string price, string gear, string fuel)
         {
             throw new NotImplementedException();
         }

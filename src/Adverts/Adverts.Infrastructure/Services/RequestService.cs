@@ -25,13 +25,13 @@ namespace Adverts.Infrastructure.Services
             _client = _clientFactory.CreateClient("repositoryService");
         }
 
-        public async Task<GenericResult> GetAll(int page, int pageSize, string sortByColumn, bool isDescending)
+        public async Task<GenericResult> GetAll(int page, int pageSize, string sortByColumn, bool isDescending, string categoryId, string price, string gear, string fuel)
         {
             GenericResult result = new GenericResult();
 
             try
             {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"advert/all?page={page}&pageSize={pageSize}&sortByColumn={sortByColumn}&isDescending={isDescending}");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"advert/all?page={page}&pageSize={pageSize}&sortByColumn={sortByColumn}&isDescending={isDescending}&categoryId={categoryId}&price={price}&gear={gear}&fuel={fuel}");
 
                 HttpResponseMessage response = await _client.SendAsync(request);
 
