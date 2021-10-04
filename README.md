@@ -9,7 +9,7 @@
   - Password: com1234@
 4.  With SSMS Login, create a db named "CarAdvertsDb"
 5. Import 2 CSV files and create tables in CarAdvertsDb. You can find CSV files in "src\Repository\Repository.API\Assets\DatabaseTables" folder.
-6. After all these steps, you can use API's on "localhost:6876" , if you want to go through swagger just type "localhost:8001/6876" to your browser.
+6. After all these steps, you can use API's on "localhost:6876" , if you want to go through swagger just type "localhost:6876/swagger" to your browser.
 
 ## Project Info
   * Adverts => API Endpoint service for the project.
