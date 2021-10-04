@@ -44,8 +44,7 @@ namespace Repository.API
             {
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBus:HostName"],
-                    Port = Convert.ToInt32(Configuration["EventBus:Port"])
+                    HostName = Configuration["EventBus:HostName"]
                 };
 
                 if (!string.IsNullOrEmpty(Configuration["EventBus:UserName"]))

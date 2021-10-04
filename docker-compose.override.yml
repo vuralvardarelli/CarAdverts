@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+    advertsdb:
+        container_name: advertsdb
+        ports:
+            - "1433:1433"
+        environment:
+            SA_PASSWORD: "com1234@"
+            ACCEPT_EULA: "Y"
+
+    rabbitmq:
+        container_name: rabbitmq
+        restart: always
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+
+    repository.api:
+        container_name: repositoryapi
+        restart: on-failure
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:AdvertConnection=Server=advertsdb;Database=CarAdvertsDb;User Id=sa;Password=com1234@"
+            - "EventBus:HostName=rabbitmq"
+        depends_on:
+            - advertsdb
+            - rabbitmq
+        ports:
+            - "38100:80"
+
+    adverts.api:
+        container_name: advertsapi
+        restart: on-failure
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:RepositoryServiceUrl=http://repository.api"
+            - "EventBus:HostName=rabbitmq"
+        depends_on:
+            - advertsdb
+            - rabbitmq
+            - repository.api
+        ports:
+            - "6876:80"
+

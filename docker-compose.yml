@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+    advertsdb:
+        image: mcr.microsoft.com/mssql/server
+
+    rabbitmq:
+        image: rabbitmq:3-management
+
+    adverts.api:
+        image: ${DOCKER_REGISTRY-}advertsapi
+        build:
+            context: .
+            dockerfile: src/Adverts/Adverts.API/Dockerfile
+
+    repository.api:
+        image: ${DOCKER_REGISTRY-}repositoryapi
+        build:
+            context: .
+            dockerfile: src/Repository/Repository.API/Dockerfile
+

@@ -7,25 +7,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E095869E-873
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adverts", "Adverts", "{762B3CF8-FACF-412F-A175-9BA703D8A27C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adverts.API", "src\Adverts\Adverts.API\Adverts.API.csproj", "{D1F4FBBE-669C-444A-B135-857D9017503C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adverts.API", "src\Adverts\Adverts.API\Adverts.API.csproj", "{D1F4FBBE-669C-444A-B135-857D9017503C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CF1EBC42-CC0F-4E92-93BF-897E39F0AFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBusRabbitMQ", "src\Common\EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{F60417F3-7999-4551-9DBE-6AEA35CE5037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBusRabbitMQ", "src\Common\EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{F60417F3-7999-4551-9DBE-6AEA35CE5037}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{74E6F612-0218-43EE-9726-8EE77A56388B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.API", "src\Repository\Repository.API\Repository.API.csproj", "{BD45EFDC-5314-40E2-B034-375BEE89AA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.API", "src\Repository\Repository.API\Repository.API.csproj", "{BD45EFDC-5314-40E2-B034-375BEE89AA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Core", "src\Repository\Repository.Core\Repository.Core.csproj", "{78928AC4-D901-4B91-A49B-772E48D353A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Core", "src\Repository\Repository.Core\Repository.Core.csproj", "{78928AC4-D901-4B91-A49B-772E48D353A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Infrastructure", "src\Repository\Repository.Infrastructure\Repository.Infrastructure.csproj", "{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Infrastructure", "src\Repository\Repository.Infrastructure\Repository.Infrastructure.csproj", "{E28E5CA4-047B-4DAE-BC21-42C1C4DA626A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Application", "src\Repository\Repository.Application\Repository.Application.csproj", "{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Application", "src\Repository\Repository.Application\Repository.Application.csproj", "{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adverts.Core", "src\Adverts\Adverts.Core\Adverts.Core.csproj", "{4DAF8E45-946B-4717-9EC0-8447747BEC54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adverts.Core", "src\Adverts\Adverts.Core\Adverts.Core.csproj", "{4DAF8E45-946B-4717-9EC0-8447747BEC54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adverts.Infrastructure", "src\Adverts\Adverts.Infrastructure\Adverts.Infrastructure.csproj", "{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adverts.Infrastructure", "src\Adverts\Adverts.Infrastructure\Adverts.Infrastructure.csproj", "{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1090A1B1-B045-47A6-906D-05E7257AD442}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1090A1B1-B045-47A6-906D-05E7257AD442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1090A1B1-B045-47A6-906D-05E7257AD442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1090A1B1-B045-47A6-906D-05E7257AD442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1090A1B1-B045-47A6-906D-05E7257AD442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

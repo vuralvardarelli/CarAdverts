@@ -38,7 +38,7 @@ namespace Adverts.API
 
             services.AddHttpClient("repositoryService", c =>
             {
-                c.BaseAddress = new Uri(Configuration["RepositoryServiceUrl"]);
+                c.BaseAddress = new Uri(Configuration["ConnectionStrings:RepositoryServiceUrl"]);
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });
 
@@ -46,8 +46,7 @@ namespace Adverts.API
             {
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBus:HostName"],
-                    Port = Convert.ToInt32(Configuration["EventBus:Port"])
+                    HostName = Configuration["EventBus:HostName"]
                 };
 
                 if (!string.IsNullOrEmpty(Configuration["EventBus:UserName"]))
