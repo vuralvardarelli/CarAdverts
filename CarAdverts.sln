@@ -29,14 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adverts.Infrastructure", "s
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1090A1B1-B045-47A6-906D-05E7257AD442}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0C6AC6BC-B84A-4A08-BF8D-F4F081FDED1A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseTables", "DatabaseTables", "{D80FEAA7-C298-4E19-A1F1-D3659FF2AC42}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\arabamcom\Adverts.csv = ..\..\arabamcom\Adverts.csv
-		..\..\arabamcom\AdvertVisits.csv = ..\..\arabamcom\AdvertVisits.csv
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,8 +87,6 @@ Global
 		{1AE7E55E-9581-47FC-BE2E-AE5457D07B1C} = {74E6F612-0218-43EE-9726-8EE77A56388B}
 		{4DAF8E45-946B-4717-9EC0-8447747BEC54} = {762B3CF8-FACF-412F-A175-9BA703D8A27C}
 		{16D54DD2-BFEE-4DCF-ABCF-D99E92CC87CB} = {762B3CF8-FACF-412F-A175-9BA703D8A27C}
-		{0C6AC6BC-B84A-4A08-BF8D-F4F081FDED1A} = {E095869E-8736-4416-8ABE-1F78F2A0F35E}
-		{D80FEAA7-C298-4E19-A1F1-D3659FF2AC42} = {0C6AC6BC-B84A-4A08-BF8D-F4F081FDED1A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E6E871F-01C8-4C7A-B5D2-DE6201D1036B}
