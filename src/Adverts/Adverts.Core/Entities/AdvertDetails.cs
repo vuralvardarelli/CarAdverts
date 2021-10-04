@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Adverts.Core.Entities
 {
+    /// <summary>
+    /// For the story 2
+    /// </summary>
     public class AdvertDetails
     {
         public int id { get; set; }

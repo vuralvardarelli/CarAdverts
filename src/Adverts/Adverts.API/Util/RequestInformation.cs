@@ -9,6 +9,11 @@ namespace Adverts.API.Util
 {
     public static class RequestInformation
     {
+        /// <summary>
+        /// To get request IP for AdvertVisit log
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static string GetIp(HttpContext context)
         {
             string ip = string.Empty;

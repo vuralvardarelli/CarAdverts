@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Repository.API.RabbitMQ
 {
+    /// <summary>
+    /// RabbitMQ Queue Consumer Class.
+    /// </summary>
     public class EventBusRabbitMQConsumer
     {
         private readonly IRabbitMQConnection _connection;

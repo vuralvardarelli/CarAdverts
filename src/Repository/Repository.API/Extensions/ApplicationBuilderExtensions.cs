@@ -5,6 +5,9 @@ using Repository.API.RabbitMQ;
 
 namespace Repository.API.Extensions
 {
+    /// <summary>
+    /// Extension for listener(consumer) of RabbitMQ
+    /// </summary>
     public static class ApplicationBuilderExtensions
     {
         public static EventBusRabbitMQConsumer Listener { get; set; }

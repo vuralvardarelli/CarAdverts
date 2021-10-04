@@ -11,6 +11,10 @@ namespace Adverts.Infrastructure
 {
     public static class ServiceRegistration
     {
+        /// <summary>
+        /// For adding newly created services to have cleaner Startup.cs
+        /// </summary>
+        /// <param name="services"></param>
         public static void AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IRequestService, RequestService>();

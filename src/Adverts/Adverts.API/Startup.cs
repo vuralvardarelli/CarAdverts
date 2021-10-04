@@ -36,12 +36,16 @@ namespace Adverts.API
 
             services.AddInfrastructure();
 
+            #region Repository Microservice HttpClient Init
             services.AddHttpClient("repositoryService", c =>
             {
                 c.BaseAddress = new Uri(Configuration["ConnectionStrings:RepositoryServiceUrl"]);
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });
+            #endregion
 
+
+            #region RabbitMQ Dependency
             services.AddSingleton<IRabbitMQConnection>(sp =>
             {
                 var factory = new ConnectionFactory()
@@ -63,11 +67,15 @@ namespace Adverts.API
             });
 
             services.AddSingleton<EventBusRabbitMQProducer>();
+            #endregion
 
+
+            #region Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Adverts.API", Version = "v1" });
             });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

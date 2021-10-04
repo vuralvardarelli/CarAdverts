@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Adverts.Core.Entities
 {
+    /// <summary>
+    /// For sending to RabbitMQ Queue
+    /// </summary>
     public class AdvertVisits
     {
         public int advertId { get; set; }

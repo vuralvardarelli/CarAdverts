@@ -16,12 +16,14 @@ using System.Threading.Tasks;
 
 namespace Adverts.API.Controllers
 {
+    /// <summary>
+    /// Advert controller for ALL 3 Stories.
+    /// </summary>
     [Route("/advert")]
     [ApiController]
     public class AdvertController : ControllerBase
     {
         private readonly IRequestService _requestService;
-
         public AdvertController(IRequestService requestService)
         {
             _requestService = requestService;
@@ -74,7 +76,7 @@ namespace Adverts.API.Controllers
         [HttpPost("visit")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult> Visit([FromBody] AdvertVisitRequest request)
+        public async Task<ActionResult> Visit([FromBody] AdvertVisitRequestModel request)
         {
 
             string ip = RequestInformation.GetIp(HttpContext);

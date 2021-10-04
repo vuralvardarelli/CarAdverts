@@ -17,9 +17,15 @@ namespace EventBusRabbitMQ.Producer
         {
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
-
+        
+        /// <summary>
+        /// Sample RabbitMQ Publishing an event.
+        /// </summary>
+        /// <param name="queueName"></param>
+        /// <param name="publishModel"></param>
         public void PublishAdvertVisit(string queueName, AdvertVisitEvent publishModel)
         {
+            //creating channel for publishing our AdvertVisit event.
             using (var channel = _connection.CreateModel())
             {
                 channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);

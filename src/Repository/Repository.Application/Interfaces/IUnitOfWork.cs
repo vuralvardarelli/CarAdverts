@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repository.Application.Interfaces
 {
+    /// <summary>
+    /// Unit Of Work Interface to use with Repository Pattern.
+    /// </summary>
     public interface IUnitOfWork
     {
         IAdvertRepository Adverts { get; }

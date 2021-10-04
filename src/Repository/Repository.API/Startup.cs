@@ -37,9 +37,7 @@ namespace Repository.API
 
             services.AddInfrastructure();
 
-            //services.AddDbContext<OrderContext>(c =>
-            //    c.UseSqlServer(Configuration.GetConnectionString("OrderConnection")), ServiceLifetime.Singleton);
-
+            #region RabbitMQ Dependency
             services.AddSingleton<IRabbitMQConnection>(sp =>
             {
                 var factory = new ConnectionFactory()
@@ -61,11 +59,14 @@ namespace Repository.API
             });
 
             services.AddSingleton<EventBusRabbitMQConsumer>();
+            #endregion
 
+            #region Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Repository.API", Version = "v1" });
             });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +88,7 @@ namespace Repository.API
                 endpoints.MapControllers();
             });
 
+            //Adding rabbitMQ listener (consumer)
             app.UseRabbitListener();
         }
     }

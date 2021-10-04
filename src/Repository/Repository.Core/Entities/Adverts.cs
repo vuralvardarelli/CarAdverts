@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repository.Core.Entities
 {
+    /// <summary>
+    /// Adverts table columns.
+    /// </summary>
     public class Adverts
     {
         public int id { get; set; }

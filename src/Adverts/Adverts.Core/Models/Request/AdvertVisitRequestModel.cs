@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Adverts.Core.Models.Request
 {
-    public class AdvertVisitRequest
+    public class AdvertVisitRequestModel
     {
         public string advertId { get; set; }
     }

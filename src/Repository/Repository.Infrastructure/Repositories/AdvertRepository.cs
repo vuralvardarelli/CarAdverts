@@ -22,26 +22,14 @@ namespace Repository.Infrastructure.Repositories
             this.configuration = configuration;
         }
 
-        public async Task<int> AddAsync(Adverts entity)
+        public Task<int> AddAsync(Adverts entity)
         {
-            var sql = "Insert into Adverts (id,memberId,cityId,CityName,townId,TownName,modelId,modelName,year,price,title,date,categoryId,category,km,color,gear,fuel,firstPhoto,secondPhoto,userInfo,userPhone,text) VALUES (@id,@memberId,@cityId,@CityName,@townId,@TownName,@modelId,@modelName,@year,@price,@title,@date,@categoryId,@category,@km,@color,@gear,@fuel,@firstPhoto,@secondPhoto,@userInfo,@userPhone,@text)";
-            using (var connection = new SqlConnection(configuration.GetConnectionString("AdvertConnection")))
-            {
-                connection.Open();
-                var result = await connection.ExecuteAsync(sql, entity);
-                return result;
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public Task<int> DeleteAsync(int id)
         {
-            var sql = "DELETE FROM Adverts WHERE id = @id";
-            using (var connection = new SqlConnection(configuration.GetConnectionString("AdvertConnection")))
-            {
-                connection.Open();
-                var result = await connection.ExecuteAsync(sql, new { Id = id });
-                return result;
-            }
+            throw new NotImplementedException();
         }
 
         public async Task<IReadOnlyList<Adverts>> GetAllAsync(int page, int pageSize, string sortByColumn, bool isDescending, string categoryId, string price, string gear, string fuel)
@@ -59,6 +47,7 @@ namespace Repository.Infrastructure.Repositories
                 sortDirection = "DESC";
             }
 
+            // To check sorting column is empty or valid for available sorting fields.
             if (!string.IsNullOrEmpty(sortByColumn) && !Utilities.FilterableAdvertColumnNames.Contains(sortByColumn))
                 throw new ArgumentOutOfRangeException(nameof(sortByColumn), "Unknown column " + sortByColumn);
 
@@ -66,9 +55,10 @@ namespace Repository.Infrastructure.Repositories
             {
                 await connection.OpenAsync();
 
+                // For filtering only desired fields.
                 var builder = new SqlBuilder();
 
-                //note the 'where' in-line comment is required, it is a replacement token
+                // to get dynamic where clauses for filtering desired fields.
                 var selector = builder.AddTemplate("select a.* from Adverts a /**where**/");
 
                 var AdvertModel = new Adverts();
