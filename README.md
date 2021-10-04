@@ -12,9 +12,9 @@
 6. After all these steps, you can use API's on "localhost:6876" , if you want to go through swagger just type "localhost:8001/6876" to your browser.
 
 ## Project Info
-  Adverts => API Endpoint service for the project.
-  Common => For common service RabbitMQ Queue system.
-  Repository => Microservice for processing database operations.
+  * Adverts => API Endpoint service for the project.
+  * Common => For common service RabbitMQ Queue system.
+  * Repository => Microservice for processing database operations.
 
 ## Technologies Used
 * .NET 5
