@@ -28,7 +28,7 @@
 
 ## Downside
 1. I was using Dapper first time so I am not sure if it's optimum. (EntityFrameworkCore was my way to go)
-2. There is no logging system for now but it is easy to do it with Elasticsearch since all project runs like microservices. I did not implemented because it was not in documentation of this project and also I've wanted to finish fast to get results :)
+2. There is no logging system for now but it is easy to do it with Elasticsearch since all project runs like microservices.
 3. There is no error handling in Repository Microservice for now, but it will be just same as Adverts.API's services error handling so you can check.
 4. Could not find to export these all Docker images at once so Insallation would be easier without creating database or importing tables. This is mostly because Dapper does not have code first approach (at least I could not find it).
 
